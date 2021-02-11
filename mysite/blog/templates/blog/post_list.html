@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Список постов</title>
-</head>
-<body>
-    <div>
-        <h1><a href="/">Django Girls Blog</a></h1>
-    </div>
+{% extends 'blog/base.html' %}
+
+{%block content%}
     {% for post in posts %}
-    <div>
-        <p>Опубликовано: {{ post.published_date }}</p>
-        <h2><a href="">{{ post.title }}</a></h2>
-        <p>{{ post.text|linebreaksbr}}</p>
-    </div>
+        <div class="post">
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
+            <div class="date">
+                <p>Опубликовано: {{ post.published_date }}</p>
+            </div>
+        </div>
     {% endfor %}
-</body>
-</html>
+{%endblock%}
